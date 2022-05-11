@@ -1,0 +1,28 @@
+[{
+    "id": "1",
+    "pid": "112",
+    "name": "Steve",
+    "rating": 5,
+    "review": "Good product. Very satisfied."
+},
+{
+    "id": "2",
+    "pid": "111",
+    "name": "Tonny",
+    "rating": 1,
+    "review": "Very very average product. Quality is very low."
+},
+{
+    "id": "3",
+    "pid": "114",
+    "name": "Thor",
+    "rating": 4,
+    "review": "Impressed with the product's quality. It's very good than expected."
+},
+{
+    "id": "4",
+    "pid": "112",
+    "name": "Peter",
+    "rating": 3,
+    "review": "Satisfied with the product's quality."
+}]
