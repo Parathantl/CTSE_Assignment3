@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simple-bank-api-service
+  name: simple-ctse-assignment-api-service
 spec:
   selector:
-    app: simple-bank-api
+    app: simple-ctse-assignment-products-api
   ports:
     - protocol: TCP
       port: 80

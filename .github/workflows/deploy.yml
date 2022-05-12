@@ -38,7 +38,7 @@ jobs:
       shell: bash
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name eks-ctse-cluster --region ap-south-1
+      run: aws eks update-kubeconfig --name simple-ctse-assignment --region ap-south-1
 
     - name: Deploy image to Amazon EKS
       run: |
