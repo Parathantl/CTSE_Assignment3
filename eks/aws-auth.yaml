@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system 
 data: 
   mapUsers: | 
-    - userarn: arn:aws:iam::242616060700:user/github-ci
+    - userarn: arn:aws:iam::242616060700:role/eks-cluster-role
       username: github-ci
       groups:
         - deployment-ctse
