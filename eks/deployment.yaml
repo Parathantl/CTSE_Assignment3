@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-ctse-assignment-deployment
+  labels:
+    app: simple-ctse-assignment-products-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-ctse-assignment-products-api
+  template:
+    metadata:
+      labels:
+        app: simple-ctse-assignment-products-api
+    spec:
+      containers:
+      - name: simple-ctse-assignment-products-api
+        image: docker.io/parathantl/products:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
