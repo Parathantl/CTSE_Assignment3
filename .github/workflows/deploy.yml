@@ -32,7 +32,10 @@ jobs:
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
     
     - name: Create and push Docker images
-      run: cd CTSE_Assignment3 && sh ./docker-build.sh ${{ secrets.DOCKER_USERNAME }} ${{ github.sha }}
+      run: |
+        chmod +x ./docker-build.sh
+        ./docker-build.sh ${{ secrets.DOCKER_USERNAME }} ${{ github.sha }}
+      shell: bash
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name eks-ctse-cluster --region ap-south-1
