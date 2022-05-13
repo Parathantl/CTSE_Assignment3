@@ -1,0 +1,43 @@
+version: "3.3"
+
+services:
+
+  products-service:
+    build:
+      context: ./products
+      dockerfile: Dockerfile
+    container_name: products
+    image: parathantl/products:latest
+    expose:
+      - "3000"
+
+  checkout-service:
+    build:
+      context: ./checkout
+      dockerfile: Dockerfile
+    container_name: checkout
+    image: parathantl/checkout:latest
+    expose:
+      - "3001"
+
+  reviews-service:
+    build:
+      context: ./review
+      dockerfile: Dockerfile
+    container_name: reviews
+    image: parathantl/reviews:latest
+    expose:
+      - "3002"
+
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: proxy
+    image: parathantl/proxy:latest
+    ports:
+      - '80:80'
+    depends_on:
+      - products-service
+      - checkout-service
+      - reviews-service

@@ -24,7 +24,7 @@ function saveJSON(filename = '', json ='""'){
     return fs.writeFileSync(filename, JSON.stringify(json)) 
 }
 
-app.post('/v1/api/review', function(req,res){
+app.post('/api/v1/review', function(req,res){
     const id = req.body.id;
     const pid = req.body.pid;
     const name = req.body.name;
@@ -53,7 +53,7 @@ app.post('/v1/api/review', function(req,res){
     })
 })
 
-app.get('/api/v1/review/', (req, res) => {
+app.get('/api/v1/review', (req, res) => {
 	fs.readFile('data.json', 'utf8', function (err, data) {
 	  if (err) throw err;
 	  obj = JSON.parse(data);

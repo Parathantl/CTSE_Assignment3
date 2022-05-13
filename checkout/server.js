@@ -24,7 +24,7 @@ function saveJSON(filename = '', json ='""'){
     return fs.writeFileSync(filename, JSON.stringify(json)) 
 }
 
-app.post('/v1/api/checkout', function(req,res){
+app.post('/api/v1/checkout', function(req,res){
     const orderId = req.body.orderId;
     const productId = req.body.productId;
     const noOfItems = req.body.noOfItems;
