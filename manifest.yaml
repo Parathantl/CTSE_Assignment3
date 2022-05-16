@@ -1,37 +1,36 @@
 appVersion: app/v1
 kind: Deployment
 metadata:
-  name: products-app
+  name: nginx-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: products-app
+      app: nginx-app
   template:
     metadata:
       labels:
-        app: products-app
+        app: nginx-app
     spec:
       containers:
-      - name: products-app
-        image: parathantl/products
+      - name: nginx-app
+        image: parathantl/nginx:latest
         resources:
           limits:
             memory: 128Mi
             cpu: 500m
-        ports:
-        - containerPort: 8080
 
 ---
+
 appVersion: v1
 kind: Service
 metadata:
   name: products-app-service
 spec:
   selector:
-    app: products-app
-  type: LoadBalancer
+    app: nginx-app
+  type: nginx-app
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 80
+    targetPort: 80
