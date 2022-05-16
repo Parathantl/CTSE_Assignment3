@@ -38,7 +38,7 @@ jobs:
       shell: bash
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name test-ctse-app --region ap-south-1
+      run: aws eks update-kubeconfig --name test-ctse-app --region ap-south-1 --role-arn arn:aws:iam::242616060700:role/eks-cluster-role
 
     - name: Deploy image to Amazon EKS
       run: |
