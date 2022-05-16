@@ -43,8 +43,8 @@ jobs:
     - name: Confirm Updation
       run: kubectl config view --minify
     
-    - name: Add ConfigMap
-      run: kubectl apply -f eks/aws-auth.yaml
+    - name: Services Print
+      run: kubectl get svc
 
     - name: Deploy image to Amazon EKS
       run: |
