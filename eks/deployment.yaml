@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app
-  labels:
-    app: nginx-app
+ name: express-test
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nginx-app
-  template:
-    metadata:
-      labels:
-        app: nginx-app
-    spec:
-      containers:
-      - name: nginx-app
-        image: parathantl/products:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
+ replicas: 3
+ selector:
+   matchLabels:
+     app: express-test
+ template:
+   metadata:
+     labels:
+       app: express-test
+   spec:
+     containers:
+     - name: express-test
+       image: parathantl/products:latest
+       resources:
+          limits:
+            memory: 128Mi
+            cpu: 500m
+       ports:
+       - containerPort: 3000
