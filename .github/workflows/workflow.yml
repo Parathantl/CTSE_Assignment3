@@ -55,6 +55,12 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name ctse-demo --region ap-south-1
 
+    - name: Services List
+      run: kubectl get services
+
+    - name: Get Pods in all namespaces
+      run: kubectl get services --all-namespaces
+
     - name: Deploy image to Amazon EKS
       run: |
         kubectl apply -f eks/aws-auth.yaml
