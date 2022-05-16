@@ -40,7 +40,11 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name ctse-deployment-cluster --region ap-south-1 --role-arn arn:aws:iam::242616060700:role/eksClusterRole
 
+    - name: Confirm Updation
+      run: kubectl config view --minify
+
     - name: Deploy image to Amazon EKS
       run: |
+        kubectl apply -f eks/aws-auth.yaml
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml

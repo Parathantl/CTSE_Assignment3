@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system 
 data: 
   mapUsers: | 
-    - userarn: arn:aws:iam::242616060700:user/github-ci
-      username: github-ci
+    - userarn: arn:aws:iam::242616060700:user/ctse-test
+      username: ctse-test
       groups:
         - deployment-ctse
