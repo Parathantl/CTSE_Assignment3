@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx-app
-        image: parathantl/nginx:latest
+        image: parathantl/products:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 3000
