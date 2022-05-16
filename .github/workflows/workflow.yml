@@ -33,7 +33,7 @@ jobs:
     
     - name: Create and push Docker images For Parathan
       run: |
-        docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:$2 -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
+        docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
         docker push -a ${{ secrets.DOCKER_USERNAME }}/products
       
     # - name: Create and push Docker images
@@ -47,7 +47,7 @@ jobs:
     
     - name: Create and push Docker images For Deepika
       run: |
-        docker build -f checkout/Dockerfile -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:$2 -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:latest .
+        docker build -f checkout/Dockerfile -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:latest .
         docker push -a ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout
 
     - name: Log into Docker registry
@@ -55,7 +55,7 @@ jobs:
     
     - name: Create and push Docker images For Abarna
       run: |
-        docker build -f review/Dockerfile -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:$2 -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:latest .
+        docker build -f review/Dockerfile -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:latest .
         docker push -a ${{ secrets.DOCKER_USERNAME_Abarna }}/review
 
     - name: Update kube config
