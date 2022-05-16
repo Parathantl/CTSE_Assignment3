@@ -33,8 +33,8 @@ jobs:
     
     - name: Create and push Docker images For Parathan
       run: |
-        docker build -f .products/Dockerfile -t $1/products:$2 -t $1/products:latest .
-        docker push -a $1/products
+        docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:$2 -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME }}/products
       
     # - name: Create and push Docker images
     #   run: |
@@ -47,16 +47,16 @@ jobs:
     
     - name: Create and push Docker images For Deepika
       run: |
-        docker build -f .checkout/Dockerfile -t $1/checkout:$2 -t $1/checkout:latest .
-        docker push -a $1/checkout
+        docker build -f checkout/Dockerfile -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:$2 -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout
 
     - name: Log into Docker registry
       run: echo "${{ secrets.DOCKER_PASSWORD_Abarna }}" | docker login -u ${{ secrets.DOCKER_USERNAME_Abarna }} --password-stdin
     
     - name: Create and push Docker images For Abarna
       run: |
-        docker build -f .review/Dockerfile -t $1/review:$2 -t $1/review:latest .
-        docker push -a $1/review
+        docker build -f review/Dockerfile -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:$2 -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME_Abarna }}/review
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name ctse-demo --region ap-south-1 --role-arn arn:aws:iam::242616060700:role/eksClusterRole
