@@ -33,7 +33,7 @@ jobs:
     
     - name: Create and push Docker images For Parathan
       run: |
-        docker build -f products/Dockerfile -t $1/products:$2 -t $1/products:latest .
+        docker build -f .products/Dockerfile -t $1/products:$2 -t $1/products:latest .
         docker push -a $1/products
       
     # - name: Create and push Docker images
@@ -47,7 +47,7 @@ jobs:
     
     - name: Create and push Docker images For Deepika
       run: |
-        docker build -f checkout/Dockerfile -t $1/checkout:$2 -t $1/checkout:latest .
+        docker build -f .checkout/Dockerfile -t $1/checkout:$2 -t $1/checkout:latest .
         docker push -a $1/checkout
 
     - name: Log into Docker registry
@@ -55,7 +55,7 @@ jobs:
     
     - name: Create and push Docker images For Abarna
       run: |
-        docker build -f review/Dockerfile -t $1/review:$2 -t $1/review:latest .
+        docker build -f .review/Dockerfile -t $1/review:$2 -t $1/review:latest .
         docker push -a $1/review
 
     - name: Update kube config
