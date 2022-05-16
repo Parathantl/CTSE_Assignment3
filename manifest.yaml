@@ -1,0 +1,37 @@
+appVersion: app/v1
+kind: Deployment
+metadata:
+  name: products-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: products-app
+  template:
+    metadata:
+      labels:
+        app: products-app
+    spec:
+      containers:
+      - name: products-app
+        image: parathantl/products
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 500m
+        ports:
+        - containerPort: 8080
+
+---
+appVersion: v1
+kind: Service
+metadata:
+  name: products-app-service
+spec:
+  selector:
+    app: products-app
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080

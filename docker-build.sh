@@ -13,4 +13,6 @@ cd ../review
 docker build -t $1/review:$2 -t $1/review:latest .
 docker push -a $1/review
 
-cd ..
+cd ../proxy
+docker build -t $1/proxy:$2 -t $1/proxy:latest .
+docker push -a $1/proxy
