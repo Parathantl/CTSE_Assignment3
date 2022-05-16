@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-ctse-assignment-deployment
+  name: nginx-app
   labels:
-    app: simple-ctse-assignment-products-api
+    app: nginx-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: simple-ctse-assignment-products-api
+      app: nginx-app
   template:
     metadata:
       labels:
-        app: simple-ctse-assignment-products-api
+        app: nginx-app
     spec:
       containers:
-      - name: simple-ctse-assignment-products-api
-        image: docker.io/parathantl/products:latest
+      - name: nginx-app
+        image: parathantl/nginx:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
