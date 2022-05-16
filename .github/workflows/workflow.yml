@@ -40,7 +40,6 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name ctse-demo --region ap-south-1 --role-arn arn:aws:iam::242616060700:role/eksClusterRole
     
-
     - name: Deploy image to Amazon EKS
       run: |
         kubectl apply -f eks/deployment.yaml
