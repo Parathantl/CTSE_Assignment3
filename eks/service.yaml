@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: nginx
-  type: NodePort
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
@@ -20,7 +20,7 @@ metadata:
 spec:
   selector:
     app: products-app
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 3000
@@ -35,7 +35,7 @@ metadata:
 spec:
   selector:
     app: checkout-app
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 3001
@@ -50,7 +50,7 @@ metadata:
 spec:
   selector:
     app: review-app
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 3002
