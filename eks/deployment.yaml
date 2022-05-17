@@ -62,7 +62,7 @@ spec:
      - name: products-app
        image: deepikait19148632/checkout:latest
        ports:
-       - containerPort: 30001
+       - containerPort: 3001
 
 ---
 
@@ -84,4 +84,4 @@ spec:
      - name: products-app
        image: it19116952/review:latest
        ports:
-       - containerPort: 30002
+       - containerPort: 3002
