@@ -1,24 +1,25 @@
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: nginx-ingress
-spec:
-  controller: k8s.io/ingress-nginx
----
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ctse-demo-ingress
+  name: nginx-ingress
+  namespace: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  ingressClassName: nginx
   rules:
-  - host: "c21f4c77452a9fa2ff0c29b44dd21591.gr7.ap-south-1.eks.amazonaws.com"
-    http:
+  - http:
       paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: nginx-app-api-service
-            port:
-              number: 3000
+      - backend:
+          serviceName: products-app-svc
+          servicePort: 80
+        path: /api/v1/products/(.*)
+      - backend:
+          serviceName: checkout-app-svc
+          servicePort: 80
+        path: /api/v1/checkout/(.*)
+      - backend:
+          serviceName: review-app-svc
+          servicePort: 80
+        path: /api/v1/review/(.*)

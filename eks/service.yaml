@@ -1,12 +1,42 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: express-test-svc
+  name: products-app-svc
 spec:
   selector:
-    app: express-test
-  type: NodePort
+    app: products-app
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 3000
     targetPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkout-app-svc
+spec:
+  selector:
+    app: checkout-app
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: review-app-svc
+spec:
+  selector:
+    app: review-app
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3002
+    targetPort: 3002

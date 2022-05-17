@@ -1,23 +1,63 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: express-test
+ name: products-app
 spec:
- replicas: 3
+ replicas: 1
  selector:
    matchLabels:
-     app: express-test
+     app: products-app
  template:
    metadata:
      labels:
-       app: express-test
+       app: products-app
    spec:
      containers:
-     - name: express-test
+     - name: products-app
        image: parathantl/products:latest
-       resources:
-          limits:
-            memory: 128Mi
-            cpu: 500m
        ports:
        - containerPort: 3000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: checkout-app
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: checkout-app
+ template:
+   metadata:
+     labels:
+       app: checkout-app
+   spec:
+     containers:
+     - name: products-app
+       image: deepikait19148632/checkout:latest
+       ports:
+       - containerPort: 30001
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: review-app
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: review-app
+ template:
+   metadata:
+     labels:
+       app: review-app
+   spec:
+     containers:
+     - name: products-app
+       image: it19116952/review:latest
+       ports:
+       - containerPort: 30002
