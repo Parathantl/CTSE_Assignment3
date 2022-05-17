@@ -1,6 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: nginx-app-svc
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
   name: products-app-svc
 spec:
   selector:
