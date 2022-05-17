@@ -53,16 +53,9 @@ jobs:
     #     docker push -a ${{ secrets.DOCKER_USERNAME_Abarna }}/review
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name ctse-demo --region ap-south-1
-
-    - name: Services List
-      run: kubectl get services
-
-    - name: Get Pods in all namespaces
-      run: kubectl get services --all-namespaces
+      run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ap-south-1
 
     - name: Deploy image to Amazon EKS
       run: |
-        kubectl apply -f eks/aws-auth.yaml
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml
