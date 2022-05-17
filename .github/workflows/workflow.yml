@@ -28,29 +28,29 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
 
-    # - name: Log into Docker registry
-    #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+    - name: Log into Docker registry
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
     
-    # - name: Create and push Docker images For Parathan
-    #   run: |
-    #     docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
-    #     docker push -a ${{ secrets.DOCKER_USERNAME }}/products
+    - name: Create and push Docker images For Parathan
+      run: |
+        docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME }}/products
 
-    # - name: Log into Docker registry
-    #   run: echo "${{ secrets.DOCKER_PASSWORD_DEEPIKA }}" | docker login -u ${{ secrets.DOCKER_USERNAME_DEEPIKA }} --password-stdin
+    - name: Log into Docker registry
+      run: echo "${{ secrets.DOCKER_PASSWORD_DEEPIKA }}" | docker login -u ${{ secrets.DOCKER_USERNAME_DEEPIKA }} --password-stdin
     
-    # - name: Create and push Docker images For Deepika
-    #   run: |
-    #     docker build -f checkout/Dockerfile -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:latest .
-    #     docker push -a ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout
+    - name: Create and push Docker images For Deepika
+      run: |
+        docker build -f checkout/Dockerfile -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME_DEEPIKA }}/checkout
 
-    # - name: Log into Docker registry
-    #   run: echo "${{ secrets.DOCKER_PASSWORD_Abarna }}" | docker login -u ${{ secrets.DOCKER_USERNAME_Abarna }} --password-stdin
+    - name: Log into Docker registry
+      run: echo "${{ secrets.DOCKER_PASSWORD_Abarna }}" | docker login -u ${{ secrets.DOCKER_USERNAME_Abarna }} --password-stdin
     
-    # - name: Create and push Docker images For Abarna
-    #   run: |
-    #     docker build -f review/Dockerfile -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:latest .
-    #     docker push -a ${{ secrets.DOCKER_USERNAME_Abarna }}/review
+    - name: Create and push Docker images For Abarna
+      run: |
+        docker build -f review/Dockerfile -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME_Abarna }}/review:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME_Abarna }}/review
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ap-south-1
@@ -60,3 +60,6 @@ jobs:
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml
         kubectl apply -f eks/ingress.yaml
+    
+    - name: Kubernetes Services Running
+      run: kubectl get svc -o wide
