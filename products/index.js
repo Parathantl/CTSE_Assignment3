@@ -9,6 +9,12 @@ const port = 3000;
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+
+    res.send({ message: 'Welcome to Products API' });
+	
+});
+
 app.get('/api/v1/products', (req, res) => {
 
 	fs.readFile('data.json', 'utf8', function (err, data) {

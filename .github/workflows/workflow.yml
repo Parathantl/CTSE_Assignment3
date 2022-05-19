@@ -36,6 +36,11 @@ jobs:
         docker build -f products/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/products:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/products:latest .
         docker push -a ${{ secrets.DOCKER_USERNAME }}/products
 
+    - name: Create and push Docker images For Parathan - nginx
+      run: |
+        docker build -f proxy/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/proxy:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/proxy:latest .
+        docker push -a ${{ secrets.DOCKER_USERNAME }}/proxy
+
     - name: Log into Docker registry
       run: echo "${{ secrets.DOCKER_PASSWORD_DEEPIKA }}" | docker login -u ${{ secrets.DOCKER_USERNAME_DEEPIKA }} --password-stdin
     
@@ -59,7 +64,6 @@ jobs:
       run: |
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml
-        kubectl apply -f eks/ingress.yaml
     
     - name: Kubernetes Services Running
       run: kubectl get svc -o wide

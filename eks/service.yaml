@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     app: nginx
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
 
 ---
 

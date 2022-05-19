@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.12
+        image: parathantl/proxy:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 
 ---
 
