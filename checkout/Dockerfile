@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY checkout/package.json .
 RUN npm install 
-COPY . .
+COPY checkout/ .
 
 EXPOSE 3001
 

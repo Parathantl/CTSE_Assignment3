@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY products/package.json .
 RUN npm install 
-COPY . .
+COPY products/ .
 
 EXPOSE 3000
 

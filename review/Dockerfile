@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY review/package.json .
 RUN npm install 
-COPY . .
+COPY review/ .
 
 EXPOSE 3002
 
