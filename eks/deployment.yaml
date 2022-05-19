@@ -59,7 +59,7 @@ spec:
        app: checkout-app
    spec:
      containers:
-     - name: products-app
+     - name: checkout-app
        image: deepikait19148632/checkout:latest
        ports:
        - containerPort: 3001
@@ -81,7 +81,7 @@ spec:
        app: review-app
    spec:
      containers:
-     - name: products-app
+     - name: review-app
        image: it19116952/review:latest
        ports:
        - containerPort: 3002
